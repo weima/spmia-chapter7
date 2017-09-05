@@ -76,6 +76,17 @@
           <groupId>org.springframework.security</groupId>
           <artifactId>spring-security-rsa</artifactId>
       </dependency>
+      <dependency>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib-jre8</artifactId>
+          <version>${kotlin.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test</artifactId>
+          <version>${kotlin.version}</version>
+          <scope>test</scope>
+      </dependency>
   </dependencies>
 
   <properties>
@@ -85,6 +96,7 @@
     <start-class>com.thoughtmechanix.organization.Application</start-class>
     <docker.image.name>johncarnell/tmx-orgservice-new</docker.image.name>
     <docker.image.tag>chapter7</docker.image.tag>
+      <kotlin.version>1.1.4-3</kotlin.version>
   </properties>
 
   <build>
@@ -132,6 +144,50 @@
          <plugin>
              <groupId>org.springframework.boot</groupId>
              <artifactId>spring-boot-maven-plugin</artifactId>
+         </plugin>
+         <plugin>
+             <groupId>org.jetbrains.kotlin</groupId>
+             <artifactId>kotlin-maven-plugin</artifactId>
+             <version>${kotlin.version}</version>
+             <executions>
+                 <execution>
+                     <id>compile</id>
+                     <phase>compile</phase>
+                     <goals>
+                         <goal>compile</goal>
+                     </goals>
+                 </execution>
+                 <execution>
+                     <id>test-compile</id>
+                     <phase>test-compile</phase>
+                     <goals>
+                         <goal>test-compile</goal>
+                     </goals>
+                 </execution>
+             </executions>
+             <configuration>
+                 <jvmTarget>1.8</jvmTarget>
+             </configuration>
+         </plugin>
+         <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-compiler-plugin</artifactId>
+             <executions>
+                 <execution>
+                     <id>compile</id>
+                     <phase>compile</phase>
+                     <goals>
+                         <goal>compile</goal>
+                     </goals>
+                 </execution>
+                 <execution>
+                     <id>testCompile</id>
+                     <phase>test-compile</phase>
+                     <goals>
+                         <goal>testCompile</goal>
+                     </goals>
+                 </execution>
+             </executions>
          </plugin>
 
      </plugins>
